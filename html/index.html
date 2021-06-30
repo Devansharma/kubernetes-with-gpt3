@@ -1,0 +1,40 @@
+<script>
+	function output(){
+		var i = document.getElementById("input").value;
+		var xhr = new XMLHttpRequest();
+
+		xhr.open("GET", "http://localhost/cgi-bin/kube.py?x=" + i, true);
+		xhr.send();
+
+		xhr.onload = function(){
+			var output = xhr.responseText;
+			document.getElementById("output").innerHTML = output;
+		}
+	}
+</script>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Kubernetes CGI</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./css/signin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center" >
+      <div class="form-signin">
+      <img class="mb-4" src="kube.png" width="250" height="250">
+      <h1 class="h3 mb-3 font-weight-normal">What do you want to do over Kubernetes</h1>
+      <input class="form-control" placeholder="Command" id="input" />
+      <br />
+      <button class="btn btn-lg btn-primary btn-block" onclick="output()">Execute</button>
+      <pre>
+      <div id = "output"></div>
+      </pre>
+      </div>
+  </body>
+  </div>
+</html>
